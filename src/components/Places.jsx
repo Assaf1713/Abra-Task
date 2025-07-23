@@ -19,7 +19,7 @@ export default function Places() {
          <div className="Places">
          {DBCTX.Places.map((place) => (
         <button
-          className="place"
+          className="btn"
           key={place.name}
           onClick={() => setSelected(place)}
         >
