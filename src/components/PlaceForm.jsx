@@ -39,7 +39,7 @@ export default function PlaceForm() {
             <label htmlFor="type">Type</label>
             <select id="type" name="type" required>
               <option value="">-- Select a type --</option>
-              <option value="Restaurant">Restaurant</option>
+              <option value="Resturant">Restaurant</option>
               <option value="Park">Park</option>
               <option value="Hotel">Hotel</option>
             </select>
