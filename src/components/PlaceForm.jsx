@@ -38,7 +38,7 @@ export default function PlaceForm() {
       const NewPlace = {
         name: PlaceData.name,
         type: PlaceData.type,
-        adress: PlaceData.adress,
+        address: PlaceData.address,
         lat: coords.lat,
         lng: coords.lng
       };

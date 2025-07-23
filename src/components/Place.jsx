@@ -13,7 +13,7 @@ export default function Place({place, handlePlaceClick}){
                 <div className="place-item-details">
                     <h2>{ place.name} </h2>
                     <p> {place.type }</p>
-                    <p> {place.adress} </p>
+                    <p> {place.address} </p>
                     <div className="place-item-actions" > 
                         <Button
                         className='btn'
