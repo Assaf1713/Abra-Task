@@ -197,7 +197,7 @@ h1, h2 {
 }
 
 .selectedPlace h2 {
-  color: #1d4ed8; /* כחול בולט */
+  color: #1d4ed8; 
 }
 
 .selectedPlace p {
