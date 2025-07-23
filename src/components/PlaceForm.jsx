@@ -5,11 +5,9 @@ import Modal from "./Modal.jsx";
 import { useContext } from "react";
 import DBContext from "./Util/DBContext.jsx";
 
-
 export default function PlaceForm() {
   const [isSubmitted, SetSubmit] = useState(false);
-  const DBCTX = useContext(DBContext)
-  
+  const DBCTX = useContext(DBContext);
 
   function handleClose() {
     SetSubmit(false);
@@ -20,13 +18,13 @@ export default function PlaceForm() {
     const fd = new FormData(event.target);
     const PlaceData = Object.fromEntries(fd.entries());
     const NewPlace = {
-        name : PlaceData.name,
-        type : PlaceData.type,
-        adress : PlaceData.adress
-    }
+      name: PlaceData.name,
+      type: PlaceData.type,
+      adress: PlaceData.adress,
+    };
     SetSubmit(true);
-    DBCTX.AddPlace(NewPlace)
-    console.log(PlaceData.name)
+    DBCTX.AddPlace(NewPlace);
+    console.log(PlaceData.name);
     console.log(DBCTX.Places);
     event.target.reset();
   }
@@ -38,7 +36,13 @@ export default function PlaceForm() {
           <h2>Enter a New Place</h2>
           <div className="input-fields">
             <Input label="Place's Name" type="text" id="name" />
-            <Input label=" Type" type="text" id="type" />
+            <label htmlFor="type">Type</label>
+            <select id="type" name="type" required>
+              <option value="">-- Select a type --</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Park">Park</option>
+              <option value="Hotel">Hotel</option>
+            </select>
             <Input label=" Adress" type="text" id="adress" />
           </div>
           <Button> Send </Button>
@@ -46,13 +50,12 @@ export default function PlaceForm() {
       </div>
       <Modal open={isSubmitted} onClose={handleClose} className="news-letter">
         <div className="modal-actions">
-          <h2> Signed Successfully ! </h2>
+          <h2> Place Added Successfully ! </h2>
           <Button className="btn" onClick={handleClose}>
             close
           </Button>
         </div>
       </Modal>
-
     </>
   );
 }

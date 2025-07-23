@@ -2,14 +2,20 @@ import { useReducer, createContext } from "react";
 
 const DBContext = createContext({
   Places: [],
-  AddPlace: () => {}
+  AddPlace: () => {},
 });
 
 function DataReducer(state, action) {
   if (action.type === "ADD_PLACE") {
     const updatedPlaces = [...state.Places];
-    updatedPlaces.push({...action.place} );
-    return { ...state, Places: updatedPlaces };
+    const newPlace = {
+      ...action.place,
+      id: crypto.randomUUID()
+    };
+    return {
+      ...state,
+      Places: [...updatedPlaces, newPlace],
+    };
   }
 }
 

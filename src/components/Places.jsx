@@ -1,38 +1,60 @@
 import { useContext, useState } from "react";
 import DBContext from "./Util/DBContext";
-import Button from "./Button";
+import TypeSelector from "./TypeSelector";
+import Place from "./Place";
 
 export default function Places() {
   const DBCTX = useContext(DBContext);
-  const [selected, setSelected] = useState(-1);
+  const [selectedPlace, setSelectedPlace] = useState(undefined);
+  const [TypeFilter, setSelectedType] = useState(0);
+  const options = ["All Places", "Resturant", "Park", "Hotel"];
+  let UserPlaces = [...DBCTX.Places];
+  if(TypeFilter!==0){
+    console.log(TypeFilter)
+     UserPlaces=UserPlaces.filter(place => place.type === options[TypeFilter])
+  }
+  
+
+  function handleTypeSelect(type) {
+    setSelectedType(type);
+  }
+
+  function handlePlaceSelect(place) {
+    setSelectedPlace(place);
+  }
 
   return (
     <>
-    <div className="selectedPlace">
-        {selected < 0 ? <p> select a place from the list </p> : (
-            <h2> You have selected {selected.name} </h2>
+      <div className="selectedPlace">
+        {selectedPlace === undefined ? (
+          <p> select a place from the list </p>
+        ) : (
+          <h2> You have selected {selectedPlace.name} </h2>
         )}
+      </div>
 
-    </div>
-
-     {DBCTX.Places.length===0 ? <p> Start by entering New Places to the form above </p> :
-         <div className="Places">
-         {DBCTX.Places.map((place) => (
-        <button
-          className="btn"
-          key={place.name}
-          onClick={() => setSelected(place)}
-        >
-          {place.name}
-        </button>
-      ))}
-    </div>
-
-     }   
-
-
-
-
+      {DBCTX.Places.length === 0 ? (
+        <p> Start by entering New Places to the form above </p>
+      ) : (
+        <section className="Places">
+          <TypeSelector
+            options={options}
+            selected={TypeFilter}
+            setTypeSelect={handleTypeSelect}
+          />
+          <div className="places-list">
+            <ul>
+              {UserPlaces.map((place) => (
+                <Place
+                  key={place.id}
+                  place={place}
+                  handlePlaceClick={handlePlaceSelect}
+                />
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
     </>
   );
 }
