@@ -2,12 +2,14 @@ import { useContext, useState } from "react";
 import DBContext from "./Util/DBContext";
 import TypeSelector from "./TypeSelector";
 import Place from "./Place";
+import GoogleMapComponent from "./GoogleMapComponent";
 
 export default function Places() {
   const DBCTX = useContext(DBContext);
   const [selectedPlace, setSelectedPlace] = useState(undefined);
   const [TypeFilter, setSelectedType] = useState(0);
   const options = ["All Places", "Resturant", "Park", "Hotel"];
+  console.log(DBCTX.Places)
   let UserPlaces = [...DBCTX.Places];
   if(TypeFilter!==0){
     console.log(TypeFilter)
@@ -37,6 +39,7 @@ export default function Places() {
         <p> Start by entering New Places to the form above </p>
       ) : (
         <section className="Places">
+          <GoogleMapComponent places={UserPlaces} />
           <TypeSelector
             options={options}
             selected={TypeFilter}
