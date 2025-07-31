@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import "./modal.css" // thats the css file for the weather-popup
+import "./Modal.css" // thats the css file for the weather-popup
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
