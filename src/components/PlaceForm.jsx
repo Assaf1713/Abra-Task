@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import Button from "./Button.jsx";
-import Input from "./Input.jsx";
+import Button from "./UI/Button.jsx";
+import Input from "./UI/Input.jsx";
 import { useState } from "react";
-import Modal from "./Modal.jsx";
+import Modal from "./UI/Modal.jsx";
 import { useContext } from "react";
 import DBContext from "./Util/DBContext.jsx";
 
@@ -72,8 +72,8 @@ export default function PlaceForm() {
         </form>
       </div>
       <Modal open={isSubmitted} onClose={handleClose} className="news-letter">
+        <h2> Place Added Successfully ! </h2>
         <div className="modal-actions">
-          <h2> Place Added Successfully ! </h2>
           <Button className="btn" onClick={handleClose}>
             close
           </Button>

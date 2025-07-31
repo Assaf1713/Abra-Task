@@ -1,6 +1,6 @@
 
 import DATA from "../data/Button_Data.js"
-import Button from "./Button.jsx";
+import Button from "./UI/Button.jsx";
 
 export default function TypeSelector({options,selected,setTypeSelect}) {
   
